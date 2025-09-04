@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaSpora - Выходной души</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <svg width="200" height="80" viewBox="0 0 200 80" fill="none">
+                            <rect width="200" height="80" fill="#2d5016" rx="10"/>
+                            <text x="100" y="45" text-anchor="middle" fill="white" font-size="18" font-weight="bold">VitaSpora</text>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="language-switcher">
+                    <button onclick="changeLanguage('ru')">🇷🇺</button>
+                    <button onclick="changeLanguage('en')">🇺🇸</button>
+                    <button onclick="changeLanguage('es')">🇪🇸</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml;charset=utf-8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 1920 600&quot;><rect fill=&quot;%238e4ec6&quot; width=&quot;1920&quot; height=&quot;600&quot;/><text x=&quot;960&quot; y=&quot;300&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;36&quot;>Фон: Церемония</text></svg>')">
+            <div class="hero-content">
+                <h1 data-i18n="soul.hero.title">Выходной души</h1>
+                <p data-i18n="soul.hero.subtitle">Откройте новые грани сознания с псилоцибиновым чаем</p>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="action-buttons">
+            <div class="container">
+                <div class="buttons-row">
+                    <button class="main-btn menu-btn" onclick="toggleMenu()" data-i18n="soul.buttons.menu">Меню</button>
+                    <button class="main-btn book-btn" onclick="openBookingForm()" data-i18n="soul.buttons.book_day">Забронировать день</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section (Hidden by default) -->
+        <section class="menu-section" id="menuSection" style="display: none;">
+            <div class="container">
+                <h2 data-i18n="soul.menu.title">Наше меню</h2>
+                <div class="menu-grid">
+                    <!-- Menu Items 1-20 -->
+                    <div class="menu-item" onclick="openDishModal(1, 'Название блюда 1', 'Описание блюда 1', 15.00, 'images/dishes/dish1.jpg')">
+                        <div class="dish-image">
+                            <svg width="300" height="200" viewBox="0 0 300 200">
+                                <rect fill="#f39c12" width="300" height="200" rx="10"/>
+                                <text x="150" y="100" text-anchor="middle" fill="white" font-size="14">Блюдо 1</text>
+                            </svg>
+                        </div>
+                        <div class="menu-info-overlay">
+                            <h4>Название блюда 1</h4>
+                            <p>Описание блюда 1</p>
+                            <span class="price">$15.00</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" onclick="openDishModal(2, 'Название блюда 2', 'Описание блюда 2', 20.00, 'images/dishes/dish2.jpg')">
+                        <div class="dish-image">
+                            <svg width="300" height="200" viewBox="0 0 300 200">
+                                <rect fill="#e67e22" width="300" height="200" rx="10"/>
+                                <text x="150" y="100" text-anchor="middle" fill="white" font-size="14">Блюдо 2</text>
+                            </svg>
+                        </div>
+                        <div class="menu-info-overlay">
+                            <h4>Название блюда 2</h4>
+                            <p>Описание блюда 2</p>
+                            <span class="price">$20.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Остальные блюда 3-20 -->
+                    <div class="menu-item" onclick="openDishModal(3, 'Название блюда 3', 'Описание блюда 3', 25.00, 'images/dishes/dish3.jpg')">
+                        <div class="dish-image">
+                            <svg width="300" height="200" viewBox="0 0 300 200">
+                                <rect fill="#d35400" width="300" height="200" rx="10"/>
+                                <text x="150" y="100" text-anchor="middle" fill="white" font-size="14">Блюдо 3</text>
+                            </svg>
+                        </div>
+                        <div class="menu-info-overlay">
+                            <h4>Название блюда 3</h4>
+                            <p>Описание блюда 3</p>
+                            <span class="price">$25.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Добавь остальные блюда по аналогии -->
+
+                </div>
+                
+                <div class="order-banner">
+                    <button class="main-btn order-btn" onclick="sendMenuOrder()" data-i18n="soul.menu.order">Заказать</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Модальное окно блюда -->
+        <div id="dishModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeDishModal()">&times;</span>
+                <div class="modal-dish">
+                    <img id="dishImage" src="" alt="Dish">
+                    <div class="modal-dish-info">
+                        <h2 id="dishTitle"></h2>
+                        <p id="dishDescription"></p>
+                        <p class="modal-price" id="dishPrice"></p>
+                        
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="changeDishQuantity(-1)">-</button>
+                            <input type="number" id="dishQuantity" value="1" min="1" max="10">
+                            <button class="quantity-btn" onclick="changeDishQuantity(1)">+</button>
+                        </div>
+                        
+                        <button class="add-to-cart-btn" onclick="addDishToCart()">
+                            <span data-i18n="soul.menu.add_to_cart">Добавить в заказ</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Form Modal -->
+        <div class="modal" id="bookingModal">
+            <div class="modal-content">
+                <span class="close" onclick="closeBookingForm()">&times;</span>
+                <h3 data-i18n="soul.booking.title">Забронировать день</h3>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label data-i18n="soul.booking.name">Имя:</label>
+                        <input type="text" id="bookingName" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="soul.booking.phone">Телефон:</label>
+                        <input type="tel" id="bookingPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="soul.booking.date">Дата:</label>
+                        <input type="date" id="bookingDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="soul.booking.people">Количество человек:</label>
+                        <input type="number" id="bookingPeople" min="1" max="20" required>
+                    </div>
+                    <button type="submit" class="main-btn" data-i18n="soul.booking.send">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-i18n="footer.contact">Контакты</h4>
+                    <p>WhatsApp: +593 96 826 3856</p>
+                    <p data-i18n="footer.location">Горы Эквадора</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4 data-i18n="footer.follow_us">Следите за нами</h4>
+                    <div class="social-links">
+                        <a href="#" target="_blank" class="social-link" data-i18n="footer.youtube">YouTube</a>
+                        <a href="#" target="_blank" class="social-link" data-i18n="footer.instagram">Instagram</a>
+                        <a href="#" target="_blank" class="social-link" data-i18n="footer.facebook">Facebook</a>
+                        <a href="#" target="_blank" class="social-link" data-i18n="footer.tiktok">TikTok</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 VitaSpora. <span data-i18n="footer.rights">Все права защищены</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Корзина для блюд
+        let menuCart = [];
+        let currentDish = null;
+
+        // Переключение меню
+        function toggleMenu() {
+            const menuSection = document.getElementById('menuSection');
+            menuSection.style.display = menuSection.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Открытие модального окна блюда
+        function openDishModal(id, name, description, price, image) {
+            currentDish = {
+                id: id,
+                name: name,
+                description: description,
+                price: price,
+                image: image
+            };
+            
+            document.getElementById('dishTitle').textContent = name;
+            document.getElementById('dishDescription').textContent = description;
+            document.getElementById('dishPrice').textContent = '$' + price.toFixed(2);
+            document.getElementById('dishImage').src = image;
+            document.getElementById('dishQuantity').value = 1;
+            
+            document.getElementById('dishModal').style.display = 'block';
+        }
+
+        // Закрытие модального окна блюда
+        function closeDishModal() {
+            document.getElementById('dishModal').style.display = 'none';
+        }
+
+        // Изменение количества блюда
+        function changeDishQuantity(amount) {
+            const input = document.getElementById('dishQuantity');
+            let value = parseInt(input.value) + amount;
+            
+            if (value < 1) value = 1;
+            if (value > 10) value = 10;
+            
+            input.value = value;
+        }
+
+        // Добавление блюда в корзину
+        function addDishToCart() {
+            if (!currentDish) return;
+            
+            const dishId = currentDish.id;
+            const quantity = parseInt(document.getElementById('dishQuantity').value);
+            const price = parseFloat(currentDish.price);
+            
+            const existingItem = menuCart.find(item => item.id === dishId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                menuCart.push({
+                    id: dishId,
+                    name: currentDish.name,
+                    price: price,
+                    quantity: quantity,
+                    image: currentDish.image
+                });
+            }
+            
+            closeDishModal();
+            showNotification('Блюдо добавлено в заказ!');
+        }
+
+        // Отправка заказа меню в WhatsApp
+        function sendMenuOrder() {
+            if (menuCart.length === 0) {
+                showNotification('Корзина пуста!');
+                return;
+            }
+            
+            let message = 'Заказ из меню:%0A%0A';
+            let total = 0;
+            
+            menuCart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                message += `${item.name} x${item.quantity} - $${itemTotal.toFixed(2)}%0A`;
+            });
+            
+            message += `%0AИтого: $${total.toFixed(2)}`;
+            
+            const phone = '+593968263856';
+            const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Бронирование
+        function openBookingForm() {
+            document.getElementById('bookingModal').style.display = 'block';
+        }
+
+        function closeBookingForm() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+
+        // Обработка формы бронирования
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('bookingName').value;
+            const phone = document.getElementById('bookingPhone').value;
+            const date = document.getElementById('bookingDate').value;
+            const people = document.getElementById('bookingPeople').value;
+            
+            const message = `Бронирование:%0AИмя: ${name}%0AТелефон: ${phone}%0AДата: ${date}%0AКоличество человек: ${people}`;
+            const whatsappUrl = `https://wa.me/+593968263856?text=${message}`;
+            
+            window.open(whatsappUrl, '_blank');
+            closeBookingForm();
+        });
+
+        // Закрытие модальных окон при клике вне
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('dishModal')) {
+                closeDishModal();
+            }
+            if (event.target === document.getElementById('bookingModal')) {
+                closeBookingForm();
+            }
+        });
+    </script>
+</body>
+</html>

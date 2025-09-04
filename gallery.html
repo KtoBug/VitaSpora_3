@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitaSpora - Галерея</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <svg width="200" height="80" viewBox="0 0 200 80" fill="none">
+                            <rect width="200" height="80" fill="#2d5016" rx="10"/>
+                            <text x="100" y="45" text-anchor="middle" fill="white" font-size="18" font-weight="bold">VitaSpora</text>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="language-switcher">
+                    <button onclick="changeLanguage('ru')">🇷🇺</button>
+                    <button onclick="changeLanguage('en')">🇺🇸</button>
+                    <button onclick="changeLanguage('es')">🇪🇸</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="page-hero" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml;charset=utf-8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 1920 600&quot;><rect fill=&quot;%23e74c3c&quot; width=&quot;1920&quot; height=&quot;600&quot;/><text x=&quot;960&quot; y=&quot;300&quot; text-anchor=&quot;middle&quot; fill=&quot;white&quot; font-size=&quot;36&quot;>Фон: Красивая природа</text></svg>')">
+            <div class="hero-content">
+                <h1 data-i18n="gallery.hero.title">Галерея</h1>
+                <p data-i18n="gallery.hero.subtitle">Фото и видео нашего удивительного места</p>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="container">
+                <h2 data-i18n="gallery.content.title">Наша галерея</h2>
+                
+                <div class="gallery-filters">
+                    <button class="filter-btn active" onclick="filterGallery('all')" data-i18n="gallery.filters.all">Все</button>
+                    <button class="filter-btn" onclick="filterGallery('photos')" data-i18n="gallery.filters.photos">Фото</button>
+                    <button class="filter-btn" onclick="filterGallery('videos')" data-i18n="gallery.filters.videos">Видео</button>
+                    <button class="filter-btn" onclick="filterGallery('nature')" data-i18n="gallery.filters.nature">Природа</button>
+                    <button class="filter-btn" onclick="filterGallery('ceremony')" data-i18n="gallery.filters.ceremony">Церемонии</button>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                    <div class="gallery-item" data-category="photos nature" onclick="openLightbox('images/gallery/photo1.jpg')">
+                        <svg width="400" height="300" viewBox="0 0 400 300">
+                            <rect fill="#3498db" width="400" height="300" rx="10"/>
+                            <text x="200" y="150" text-anchor="middle" fill="white" font-size="18">Фото природы 1</text>
+                        </svg>
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">📷</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="photos ceremony" onclick="openLightbox('images/gallery/photo2.jpg')">
+                        <svg width="400" height="300" viewBox="0 0 400 300">
+                            <rect fill="#9b59b6" width="400" height="300" rx="10"/>
+                            <text x="200" y="150" text-anchor="middle" fill="white" font-size="18">Фото церемонии 1</text>
+                        </svg>
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">📷</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="videos nature" onclick="openVideoLightbox('videos/nature1.mp4')">
+                        <svg width="400" height="300" viewBox="0 0 400 300">
+                            <rect fill="#e74c3c" width="400" height="300" rx="10"/>
+                            <text x="200" y="150" text-anchor="middle" fill="white" font-size="18">Видео природы 1</text>
+                        </svg>
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">🎥</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="photos nature" onclick="openLightbox('images/gallery/photo3.jpg')">
+                        <svg width="400" height="300" viewBox="0 0 400 300">
+                            <rect fill="#27ae60" width="400" height="300" rx="10"/>
+                            <text x="200" y="150" text-anchor="middle" fill="white" font-size="18">Фото природы 2</text>
+                        </svg>
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">📷</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="videos ceremony" onclick="openVideoLightbox('videos/ceremony1.mp4')">
+                        <svg width="400" height="300" viewBox="0 0 400 300">
+                            <rect fill="#f39c12" width="400" height="300" rx="10"/>
+                            <text x="200" y="150" text-anchor="middle" fill="white" font-size="18">Видео церемонии 1</text>
+                        </svg>
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">🎥</span>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="photos ceremony" onclick="openLightbox('images/gallery/photo4.jpg')">
+                        <svg width="400" height="300" viewBox="0 0 400 300">
+                            <rect fill="#8e44ad" width="400" height="300" rx="10"/>
+                            <text x="200" y="150" text-anchor="middle" fill="white" font-size="18">Фото церемонии 2</text>
+                        </svg>
+                        <div class="gallery-overlay">
+                            <span class="gallery-icon">📷</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightboxImage">
+        <video class="lightbox-content" id="lightboxVideo" controls style="display:none;">
+            <source src="" type="video/mp4">
+        </video>
+    </div>
+
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Функции для галереи
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category').includes(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxVideo = document.getElementById('lightboxVideo');
+            
+            lightboxImage.src = imageSrc;
+            lightboxImage.style.display = 'block';
+            lightboxVideo.style.display = 'none';
+            lightbox.style.display = 'block';
+        }
+        
+        function openVideoLightbox(videoSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxVideo = document.getElementById('lightboxVideo');
+            
+            lightboxVideo.src = videoSrc;
+            lightboxVideo.style.display = 'block';
+            lightboxImage.style.display = 'none';
+            lightbox.style.display = 'block';
+            lightboxVideo.play();
+        }
+        
+        // Закрытие лайтбокса
+        document.querySelector('.close-lightbox').onclick = function() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.getElementById('lightboxVideo').pause();
+        }
+        
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('lightbox')) {
+                document.getElementById('lightbox').style.display = 'none';
+                document.getElementById('lightboxVideo').pause();
+            }
+        }
+    </script>
+</body>
+</html>
